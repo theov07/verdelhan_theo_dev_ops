@@ -22,8 +22,8 @@ jobs:
           distribution: 'temurin'
 
       - name: Build and test with Maven
-        run: mvn clean verify --file simple-api-student-main/pom.xml
-
+        # run: mvn clean verify --file simple-api-student-main/pom.xml
+        run : mvn -B verify sonar:sonar -Dsonar.projectKey=devopstheo2_devops -Dsonar.organization=devopstheo2 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file simple-api-student-main/pom.xml
 
 
   build-and-push-docker-image:
