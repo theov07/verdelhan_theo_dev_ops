@@ -8,7 +8,7 @@ spring:
     generate-ddl: false
     open-in-view: true
   datasource:
-    url: jdbc:postgresql://my-db:5432/db
+    url: jdbc:postgresql://${DB_host:database}:${DB_port:5432}/${DB_name:db}
     username: usr
     password: pwd
     driver-class-name: org.postgresql.Driver
@@ -19,3 +19,4 @@ management:
    web:
      exposure:
        include: health,info,env,metrics,beans,configprops
+
