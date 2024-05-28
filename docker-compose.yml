@@ -1,0 +1,42 @@
+version: '3.7'
+ 
+services:
+    backend:
+        build:
+          context: "./simple-api-student-main/Dockerfile"
+        container_name: "simple_api_student"
+        ports:
+          - "8080:8080"
+        networks:
+          - app-network
+        depends_on:
+          - database
+ 
+ 
+    database:
+        
+        image: my-db
+        container_name: "database"
+
+        environment:
+          POSTGRES_DB: db
+          POSTGRES_USER: usr
+          POSTGRES_PASSWORD: pwd
+          
+        networks:
+          - app-network
+ 
+
+    httpd:
+        build:
+          context: "./http-server/Dockerfile"
+        ports:
+          - "80:80"
+        networks:
+          - app-network
+        depends_on:
+         - backend
+         - database
+ 
+networks:
+    app-network:
