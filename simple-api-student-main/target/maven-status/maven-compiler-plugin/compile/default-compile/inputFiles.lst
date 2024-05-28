@@ -1,0 +1,10 @@
+/Users/theoverdelhan/Documents/EDUCATION/FG4A DATA/DevOps/verdelhan_theo_dev_ops/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/SimpleApiApplication.java
+/Users/theoverdelhan/Documents/EDUCATION/FG4A DATA/DevOps/verdelhan_theo_dev_ops/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/controller/StudentController.java
+/Users/theoverdelhan/Documents/EDUCATION/FG4A DATA/DevOps/verdelhan_theo_dev_ops/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/controller/GreetingController.java
+/Users/theoverdelhan/Documents/EDUCATION/FG4A DATA/DevOps/verdelhan_theo_dev_ops/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/controller/DepartmentController.java
+/Users/theoverdelhan/Documents/EDUCATION/FG4A DATA/DevOps/verdelhan_theo_dev_ops/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/service/DepartmentService.java
+/Users/theoverdelhan/Documents/EDUCATION/FG4A DATA/DevOps/verdelhan_theo_dev_ops/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/entity/Department.java
+/Users/theoverdelhan/Documents/EDUCATION/FG4A DATA/DevOps/verdelhan_theo_dev_ops/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/service/StudentService.java
+/Users/theoverdelhan/Documents/EDUCATION/FG4A DATA/DevOps/verdelhan_theo_dev_ops/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/entity/Student.java
+/Users/theoverdelhan/Documents/EDUCATION/FG4A DATA/DevOps/verdelhan_theo_dev_ops/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/dao/DepartmentDAO.java
+/Users/theoverdelhan/Documents/EDUCATION/FG4A DATA/DevOps/verdelhan_theo_dev_ops/simple-api-student-main/src/main/java/fr/takima/training/simpleapi/dao/StudentDAO.java
