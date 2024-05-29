@@ -25,6 +25,11 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y ansible
 
+    - name: Disable host key checking
+      run: echo "ANSIBLE_HOST_KEY_CHECKING=False" >> $GITHUB_ENV
+
     - name: Run deployment playbook
       run: |
         ansible-playbook -i ansible/inventory/setup.yml ansible/playbook.yml
+      env:
+        ANSIBLE_HOST_KEY_CHECKING: False
