@@ -58,5 +58,9 @@
     - install_docker
     - create_network
     - launch_database
-    - launch_app
-    - launch_proxy
+    - launch_backends
+    - configure_proxy
+    - install_grafana
+
+
+  
