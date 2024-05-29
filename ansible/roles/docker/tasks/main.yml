@@ -1,0 +1,12 @@
+---
+# tasks file for roles/docker
+- name: Install Docker
+  yum:
+    name: docker-ce
+    state: present
+
+- name: Ensure Docker is running
+  service:
+    name: docker
+    state: started
+  tags: docker

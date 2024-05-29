@@ -1,0 +1,9 @@
+---
+- name: Launch database container
+  docker_container:
+    name: database
+    image: theov07/my-database:latest
+    ports:
+      - "5432:5432"
+    networks:
+      - name: app-network

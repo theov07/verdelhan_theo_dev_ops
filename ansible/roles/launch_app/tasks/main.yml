@@ -1,0 +1,9 @@
+---
+- name: Launch backend container
+  docker_container:
+    name: simple_api_student
+    image: theov07/api_backend:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - name: app-network
