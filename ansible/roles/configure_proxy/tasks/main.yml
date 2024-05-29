@@ -12,6 +12,7 @@
       LoadModule proxy_http_module modules/mod_proxy_http.so
       LoadModule proxy_balancer_module modules/mod_proxy_balancer.so
       LoadModule lbmethod_byrequests_module modules/mod_lbmethod_byrequests.so
+      LoadModule slotmem_shm_module modules/mod_slotmem_shm.so
 
 - name: Configure proxy balancer
   copy:
@@ -24,6 +25,7 @@
       </Proxy>
 
       <VirtualHost *:80>
+        ServerName localhost
         ProxyPreserveHost On
         ProxyPass / balancer://mycluster/
         ProxyPassReverse / balancer://mycluster/
