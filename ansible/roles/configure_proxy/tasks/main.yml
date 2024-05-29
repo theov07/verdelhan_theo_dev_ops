@@ -19,7 +19,7 @@
     content: |
       <Proxy "balancer://mycluster">
         BalancerMember http://backend-1:8081
-        BalancerMember http://backend-1:8082
+        BalancerMember http://backend-2:8082
         ProxySet lbmethod=byrequests
       </Proxy>
 

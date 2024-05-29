@@ -60,6 +60,7 @@
     - launch_database
     - launch_backends
     - configure_proxy
+    - launch_proxy
     - install_grafana
 
 
