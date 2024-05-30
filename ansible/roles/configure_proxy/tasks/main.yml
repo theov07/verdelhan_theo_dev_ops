@@ -1,37 +1,9 @@
 ---
-- name: Install Apache
-  yum:
+- name: Launch Proxy/Front Application
+  docker_container:
     name: httpd
-    state: present
-
-- name: Configure proxy modules
-  copy:
-    dest: /etc/httpd/conf.modules.d/00-proxy.conf
-    content: |
-      LoadModule proxy_module modules/mod_proxy.so
-      LoadModule proxy_http_module modules/mod_proxy_http.so
-      LoadModule proxy_balancer_module modules/mod_proxy_balancer.so
-      LoadModule lbmethod_byrequests_module modules/mod_lbmethod_byrequests.so
-      LoadModule slotmem_shm_module modules/mod_slotmem_shm.so
-
-- name: Configure proxy balancer
-  copy:
-    dest: /etc/httpd/conf.d/proxy_balancer.conf
-    content: |
-      <Proxy "balancer://mycluster">
-        BalancerMember http://backend-1:8081
-        BalancerMember http://backend-2:8082
-        ProxySet lbmethod=byrequests
-      </Proxy>
-
-      <VirtualHost *:80>
-        ServerName localhost
-        ProxyPreserveHost On
-        ProxyPass / balancer://mycluster/
-        ProxyPassReverse / balancer://mycluster/
-      </VirtualHost>
-
-- name: Restart Apache
-  service:
-    name: httpd
-    state: restarted
+    image: theov07/my-http-server:latest
+    ports:
+      - "80:80"
+    networks:
+      - name: app-network
