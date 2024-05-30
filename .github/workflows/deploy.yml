@@ -5,6 +5,8 @@ on:
     workflows: ["CI devops 2024"]
     types:
       - completed
+  push:
+    branches: [nouvelle-branche, develop]
 
 jobs:
   deploy:
