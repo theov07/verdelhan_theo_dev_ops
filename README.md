@@ -796,3 +796,116 @@ jobs:
 3.	The job checks out the repository and sets up SSH using a private key stored in GitHub Secrets.
 4.	Ansible is installed on the runner, and host key checking is disabled.
 5.	Finally, the workflow runs an Ansible playbook to deploy the application.
+
+
+
+
+
+## Load Balancing BONUS
+
+
+### install_grafana role, main file
+
+```yaml
+---
+- name: Add Grafana repository
+  yum_repository:
+    name: grafana
+    description: Grafana Repository
+    baseurl: https://packages.grafana.com/oss/rpm
+    gpgcheck: yes
+    gpgkey: https://packages.grafana.com/gpg.key
+    enabled: yes
+
+- name: Install Grafana
+  yum:
+    name: grafana
+    state: present
+
+- name: Start and enable Grafana
+  service:
+    name: grafana-server
+    state: started
+    enabled: yes
+```
+
+
+
+
+
+### lauch_backends role, main file
+
+```yaml
+---
+- name: Launch backend instance 1
+  docker_container:
+    name: backend-1
+    image: theov07/api_backend:latest
+    ports:
+      - "8081:8080"
+    networks:
+      - name: app-network
+
+- name: Launch backend instance 2
+  docker_container:
+    name: backend-2
+    image: theov07/api_backend:latest
+    ports:
+      - "8082:8080"
+    networks:
+      - name: app-network
+```
+
+
+
+
+### lauch_proxy role, main file
+
+```yaml
+---
+- name: Launch httpd container
+  docker_container:
+    name: httpd
+    image: theov07/my-http-server:latest
+    ports:
+      - "80:80"
+    networks:
+      - name: app-network
+
+```
+
+
+
+
+### httpd.conf file modification with 2 backends
+
+```bash
+
+<VirtualHost *:80>
+
+ServerName theo.verdelhan.takima.cloud
+
+
+ProxyPreserveHost On
+
+<Proxy balancer://mycluster>
+        BalancerMember http://backend-1:8081
+        BalancerMember http://backend-2:8082
+        ProxySet lbmethod=byrequests
+</Proxy>
+
+
+    ProxyPass / balancer://mycluster/
+    ProxyPassReverse / balancer://mycluster/
+
+#ProxyPass / http://simple_api_student_main:8080/
+#ProxyPassReverse / http://simple_api_student_main:8080/
+
+</VirtualHost>
+
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+LoadModule proxy_balancer_module modules/mod_proxy_balancer.so
+LoadModule lbmethod_byrequests_module modules/mod_lbmethod_byrequests.so
+
+```
